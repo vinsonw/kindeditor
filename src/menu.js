@@ -1,6 +1,8 @@
-
+import {K} from './K'
+import {_undef, _addUnit, _extend} from './core/helper'
+import { KWidget } from './widget/widget';
 // create KMenu class
-function KMenu(options) {
+export function KMenu(options) {
 	this.init(options);
 }
 _extend(KMenu, KWidget, {
@@ -77,9 +79,7 @@ _extend(KMenu, KWidget, {
 	}
 });
 
-function _menu(options) {
+export function _menu(options) {
 	return new KMenu(options);
 }
 
-K.MenuClass = KMenu;
-K.menu = _menu;

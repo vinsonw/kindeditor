@@ -1,5 +1,7 @@
+import { _unescape, _extend} from './core'
+import { K } from './K';
 
-function KUploadButton(options) {
+export function KUploadButton(options) {
 	this.init(options);
 }
 _extend(KUploadButton, {
@@ -96,10 +98,8 @@ _extend(KUploadButton, {
 	}
 });
 
-function _uploadbutton(options) {
+export function _uploadbutton(options) {
 	return new KUploadButton(options);
 }
 
-K.UploadButtonClass = KUploadButton;
-K.uploadbutton = _uploadbutton;
 

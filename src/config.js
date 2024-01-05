@@ -1,5 +1,6 @@
+import { K } from './K'
 
-function _getBasePath() {
+export function _getBasePath() {
 	var els = document.getElementsByTagName('script'), src;
 	for (var i = 0, len = els.length; i < len; i++) {
 		src = els[i].src || '';
@@ -10,19 +11,18 @@ function _getBasePath() {
 	return '';
 }
 
-K.basePath = _getBasePath();
 
-K.options = {
+export var options = {
 	designMode : true,
 	fullscreenMode : false,
 	filterMode : true,
 	wellFormatMode : true,
 	shadowMode : true,
 	loadStyleMode : true,
-	basePath : K.basePath,
-	themesPath : K.basePath + 'themes/',
-	langPath : K.basePath + 'lang/',
-	pluginsPath : K.basePath + 'plugins/',
+	basePath : _getBasePath(),
+	themesPath : _getBasePath() + 'themes/',
+	langPath :  _getBasePath() + 'lang/',
+	pluginsPath : _getBasePath() + 'plugins/',
 	themeType : 'default', // default, simple
 	langType : 'zh-CN',
 	urlType : '', // "", relative, absolute, domain

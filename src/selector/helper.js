@@ -1,4 +1,12 @@
+export {
+  _contains,
+  _getAttr,
+  _queryAll
+}
 
+var _getSetAttrDiv = document.createElement('div');
+_getSetAttrDiv.setAttribute('className', 't');
+var _GET_SET_ATTRIBUTE = _getSetAttrDiv.className !== 't';
 function _contains(nodeA, nodeB) {
 	// Bypass comparison on document node since
 	// we don't deal with cross frame,
@@ -13,10 +21,6 @@ function _contains(nodeA, nodeB) {
 	}
 	return false;
 }
-
-var _getSetAttrDiv = document.createElement('div');
-_getSetAttrDiv.setAttribute('className', 't');
-var _GET_SET_ATTRIBUTE = _getSetAttrDiv.className !== 't';
 
 function _getAttr(el, key) {
 	key = key.toLowerCase();
@@ -219,11 +223,3 @@ function _queryAll(expr, root) {
 	}
 	return results;
 }
-
-function _query(expr, root) {
-	var arr = _queryAll(expr, root);
-	return arr.length > 0 ? arr[0] : null;
-}
-
-K.query = _query;
-K.queryAll = _queryAll;

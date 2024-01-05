@@ -1,3 +1,6 @@
+import {_undef, _extend} from './core'
+import { K } from './K';
+import { KWidget } from './widget/widget';
 
 function _createButton(arg) {
 	arg = arg || {};
@@ -12,7 +15,7 @@ function _createButton(arg) {
 }
 
 // create KToolbar class
-function KDialog(options) {
+export function KDialog(options) {
 	this.init(options);
 }
 _extend(KDialog, KWidget, {
@@ -134,9 +137,7 @@ _extend(KDialog, KWidget, {
 	}
 });
 
-function _dialog(options) {
+export function _dialog(options) {
 	return new KDialog(options);
 }
 
-K.DialogClass = KDialog;
-K.dialog = _dialog;

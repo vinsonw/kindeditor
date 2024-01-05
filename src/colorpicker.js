@@ -1,6 +1,9 @@
+import { K } from "./K";
+import { _extend } from "./core";
+import { KWidget } from "./widget/widget";
 
 // create KColorPicker class
-function KColorPicker(options) {
+export function KColorPicker(options) {
 	this.init(options);
 }
 _extend(KColorPicker, KWidget, {
@@ -71,9 +74,7 @@ _extend(KColorPicker, KWidget, {
 	}
 });
 
-function _colorpicker(options) {
+export function _colorpicker(options) {
 	return new KColorPicker(options);
 }
 
-K.ColorPickerClass = KColorPicker;
-K.colorpicker = _colorpicker;

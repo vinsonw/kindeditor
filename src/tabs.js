@@ -1,5 +1,8 @@
+import {_each } from './core'
+import { K } from './K';
+import {_widget} from './widget/widget'
 
-function _tabs(options) {
+export function _tabs(options) {
 	var self = _widget(options),
 		remove = self.remove,
 		afterSelect = options.afterSelect,
@@ -57,4 +60,3 @@ function _tabs(options) {
 	return self;
 }
 
-K.tabs = _tabs;

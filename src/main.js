@@ -1,7 +1,24 @@
+import { _addUnit, _removeUnit, _each, _undef, _extend, _isFunction, _inArray,  _IE, _GECKO, _FILL_ATTR_MAP, _AUTOCLOSE_TAG_MAP, _MOBILE , _VERSION,
+	_QUIRKS,
+	_OPERA,
+	_toMap,
+	_trim,
+	_toArray
+
+} from './core'
+import { _ctrl } from './event/helper';
+import { _drag } from './widget/helper';
+import { K } from './K';
+import { _loadStyle,  _loadScript} from './ajax';
+import {_formatHtml, _formatUrl} from './html/helper'
+import { _docElement } from './node/helper';
+import {_toolbar} from './toolbar'
+import {_edit} from './edit/edit'
+
 
 var _plugins = {};
 
-function _plugin(name, fn) {
+export function _plugin(name, fn) {
 	if (name === undefined) {
 		return _plugins;
 	}
@@ -32,7 +49,7 @@ function _parseLangKey(key) {
 		about.version : '4.0'
 	}, 'zh-CN'); //add language
 */
-function _lang(mixed, langType) {
+export function _lang(mixed, langType) {
 	langType = langType === undefined ? K.options.langType : langType;
 	if (typeof mixed === 'string') {
 		if (!_language[langType]) {
@@ -302,7 +319,7 @@ function _undoToRedo(fromStack, toStack) {
 	return self;
 }
 
-function KEditor(options) {
+export function KEditor(options) {
 	var self = this;
 	// save original options
 	self.options = {};
@@ -989,11 +1006,11 @@ KEditor.prototype = {
 	}
 };
 
-function _editor(options) {
+export function _editor(options) {
 	return new KEditor(options);
 }
 
-var _instances = [];
+export var _instances = [];
 
 /**
 	@example
@@ -1001,13 +1018,15 @@ var _instances = [];
 	K.create('textarea.class');
 	K.create('#id');
 */
-function _create(expr, options) {
+export function _create(expr, options) {
 	options = options || {};
+	console.log('K.basePath', K.basePath)
 	options.basePath = _undef(options.basePath, K.basePath);
 	options.themesPath = _undef(options.themesPath, options.basePath + 'themes/');
 	options.langPath = _undef(options.langPath, options.basePath + 'lang/');
 	options.pluginsPath = _undef(options.pluginsPath, options.basePath + 'plugins/');
 	// 自动加载CSS文件
+	console.log('K.options', K.options)
 	if (_undef(options.loadStyleMode, K.options.loadStyleMode)) {
 		var themeType = _undef(options.themeType, K.options.themeType);
 		_loadStyle(options.themesPath + 'default/default.css');
@@ -1060,32 +1079,32 @@ function _eachEditor(expr, fn) {
 	});
 }
 
-K.remove = function(expr) {
+export var remove = function(expr) {
 	_eachEditor(expr, function(i) {
 		this.remove();
 		_instances.splice(i, 1);
 	});
 };
 
-K.sync = function(expr) {
+export var sync = function(expr) {
 	_eachEditor(expr, function() {
 		this.sync();
 	});
 };
 
-K.html = function(expr, val) {
+export var html = function(expr, val) {
 	_eachEditor(expr, function() {
 		this.html(val);
 	});
 };
 
-K.insertHtml = function(expr, val) {
+export var insertHtml = function(expr, val) {
 	_eachEditor(expr, function() {
 		this.insertHtml(val);
 	});
 };
 
-K.appendHtml = function(expr, val) {
+export var appendHtml = function(expr, val) {
 	_eachEditor(expr, function() {
 		this.appendHtml(val);
 	});
@@ -1095,13 +1114,6 @@ K.appendHtml = function(expr, val) {
 if (_IE && _V < 7) {
 	_nativeCommand(document, 'BackgroundImageCache', true);
 }
-
-K.EditorClass = KEditor;
-K.editor = _editor;
-K.create = _create;
-K.instances = _instances;
-K.plugin = _plugin;
-K.lang = _lang;
 
 // core plugins
 _plugin('core', function(K) {

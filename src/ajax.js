@@ -1,5 +1,8 @@
+import {_each, _json } from './core'
+import {K} from './K'
+import {_formatHtml, _formatUrl} from './html/helper'
 
-function _loadScript(url, fn) {
+export function _loadScript(url, fn) {
 	var head = document.getElementsByTagName('head')[0] || (_QUIRKS ? document.body : document.documentElement),
 		script = document.createElement('script');
 	head.appendChild(script);
@@ -17,12 +20,12 @@ function _loadScript(url, fn) {
 }
 
 // 移除URL里的GET参数
-function _chopQuery(url) {
+export function _chopQuery(url) {
 	var index = url.indexOf('?');
 	return index > 0 ? url.substr(0, index) : url;
 }
 
-function _loadStyle(url) {
+export function _loadStyle(url) {
 	var head = document.getElementsByTagName('head')[0] || (_QUIRKS ? document.body : document.documentElement),
 		link = document.createElement('link'),
 		absoluteUrl = _chopQuery(_formatUrl(url, 'absolute'));
@@ -37,7 +40,7 @@ function _loadStyle(url) {
 	link.rel = 'stylesheet';
 }
 
-function _ajax(url, fn, method, param, dataType) {
+export function _ajax(url, fn, method, param, dataType) {
 	method = method || 'GET'; //POST or GET
 	dataType = dataType || 'json'; //json or html
 	var xhr = window.XMLHttpRequest ? new window.XMLHttpRequest() : new ActiveXObject('Microsoft.XMLHTTP');
@@ -67,6 +70,3 @@ function _ajax(url, fn, method, param, dataType) {
 	}
 }
 
-K.loadScript = _loadScript;
-K.loadStyle = _loadStyle;
-K.ajax = _ajax;

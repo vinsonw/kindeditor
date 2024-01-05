@@ -1,4 +1,6 @@
-
+import {_undef, _toMap, _extend} from './core'
+import {KWidget} from './widget/widget'
+import { K } from './K';
 function _selectToolbar(name, fn) {
 	var self = this,
 		knode = self.get(name);
@@ -11,7 +13,7 @@ function _selectToolbar(name, fn) {
 }
 
 // create KToolbar class
-function KToolbar(options) {
+export function KToolbar(options) {
 	this.init(options);
 }
 _extend(KToolbar, KWidget, {
@@ -128,9 +130,7 @@ _extend(KToolbar, KWidget, {
 	}
 });
 
-function _toolbar(options) {
+export function _toolbar(options) {
 	return new KToolbar(options);
 }
 
-K.ToolbarClass = KToolbar;
-K.toolbar = _toolbar;
