@@ -1,6 +1,6 @@
 // @ts-check
 import { K } from '../K'
-import {_each, _toMap, _inArray, _extend, _TIME} from '../core'
+import { _each, _toMap, _inArray, _extend, _TIME } from '../core'
 import {
   _bindEvent,
   _unbindEvent,
@@ -11,9 +11,8 @@ import {
   _unbind,
   _fire,
   _ctrl,
-  _ready,
+  _ready
 } from './helper'
-
 
 /**
 DOM_VK_BACK_SPACE : 8
@@ -47,57 +46,67 @@ DOM_VK_CLOSE_BRACKET : 221 (]})
 DOM_VK_QUOTE : 222 ('")
 */
 // 输入文字的键值
-var _INPUT_KEY_MAP = _toMap('8,9,13,32,46,48..57,59,61,65..90,106,109..111,188,190..192,219..222');
+var _INPUT_KEY_MAP = _toMap('8,9,13,32,46,48..57,59,61,65..90,106,109..111,188,190..192,219..222')
 // 移动光标的键值
-var _CURSORMOVE_KEY_MAP = _toMap('33..40');
+var _CURSORMOVE_KEY_MAP = _toMap('33..40')
 // 输入文字或移动光标的键值
-var _CHANGE_KEY_MAP = {};
-_each(_INPUT_KEY_MAP, function(key, val) {
-	_CHANGE_KEY_MAP[key] = val;
-});
-_each(_CURSORMOVE_KEY_MAP, function(key, val) {
-	_CHANGE_KEY_MAP[key] = val;
-});
+var _CHANGE_KEY_MAP = {}
+_each(_INPUT_KEY_MAP, function (key, val) {
+  _CHANGE_KEY_MAP[key] = val
+})
+_each(_CURSORMOVE_KEY_MAP, function (key, val) {
+  _CHANGE_KEY_MAP[key] = val
+})
 
-var _EVENT_PROPS = ('altKey,attrChange,attrName,bubbles,button,cancelable,charCode,clientX,clientY,ctrlKey,currentTarget,' +
-	'data,detail,eventPhase,fromElement,handler,keyCode,metaKey,newValue,offsetX,offsetY,originalTarget,pageX,' +
-	'pageY,prevValue,relatedNode,relatedTarget,screenX,screenY,shiftKey,srcElement,target,toElement,view,wheelDelta,which').split(',');
+var _EVENT_PROPS = (
+  'altKey,attrChange,attrName,bubbles,button,cancelable,charCode,clientX,clientY,ctrlKey,currentTarget,' +
+  'data,detail,eventPhase,fromElement,handler,keyCode,metaKey,newValue,offsetX,offsetY,originalTarget,pageX,' +
+  'pageY,prevValue,relatedNode,relatedTarget,screenX,screenY,shiftKey,srcElement,target,toElement,view,wheelDelta,which'
+).split(',')
 
 // create KEvent class
 export function KEvent(el, event) {
-	this.init(el, event);
+  this.init(el, event)
 }
 _extend(KEvent, {
-	init : function(el, event) {
-		var self = this, doc = el.ownerDocument || el.document || el;
-		self.event = event;
-		_each(_EVENT_PROPS, function(key, val) {
-			self[val] = event[val];
-		});
-		if (!self.target) {
-			self.target = self.srcElement || doc;
-		}
-		if (self.target.nodeType === 3) {
-			self.target = self.target.parentNode;
-		}
-		if (!self.relatedTarget && self.fromElement) {
-			self.relatedTarget = self.fromElement === self.target ? self.toElement : self.fromElement;
-		}
-		if (self.pageX == null && self.clientX != null) {
-			var d = doc.documentElement, body = doc.body;
-			self.pageX = self.clientX + (d && d.scrollLeft || body && body.scrollLeft || 0) - (d && d.clientLeft || body && body.clientLeft || 0);
-			self.pageY = self.clientY + (d && d.scrollTop  || body && body.scrollTop  || 0) - (d && d.clientTop  || body && body.clientTop  || 0);
-		}
-		if (!self.which && ((self.charCode || self.charCode === 0) ? self.charCode : self.keyCode)) {
-			self.which = self.charCode || self.keyCode;
-		}
-		if (!self.metaKey && self.ctrlKey) {
-			self.metaKey = self.ctrlKey;
-		}
-		if (!self.which && self.button !== undefined) {
-			self.which = (self.button & 1 ? 1 : (self.button & 2 ? 3 : (self.button & 4 ? 2 : 0)));
-		}
-		/**
+  init: function (el, event) {
+    var self = this,
+      doc = el.ownerDocument || el.document || el
+    self.event = event
+    _each(_EVENT_PROPS, function (key, val) {
+      self[val] = event[val]
+    })
+    if (!self.target) {
+      self.target = self.srcElement || doc
+    }
+    if (self.target.nodeType === 3) {
+      self.target = self.target.parentNode
+    }
+    if (!self.relatedTarget && self.fromElement) {
+      self.relatedTarget = self.fromElement === self.target ? self.toElement : self.fromElement
+    }
+    if (self.pageX == null && self.clientX != null) {
+      var d = doc.documentElement,
+        body = doc.body
+      self.pageX =
+        self.clientX +
+        ((d && d.scrollLeft) || (body && body.scrollLeft) || 0) -
+        ((d && d.clientLeft) || (body && body.clientLeft) || 0)
+      self.pageY =
+        self.clientY +
+        ((d && d.scrollTop) || (body && body.scrollTop) || 0) -
+        ((d && d.clientTop) || (body && body.clientTop) || 0)
+    }
+    if (!self.which && (self.charCode || self.charCode === 0 ? self.charCode : self.keyCode)) {
+      self.which = self.charCode || self.keyCode
+    }
+    if (!self.metaKey && self.ctrlKey) {
+      self.metaKey = self.ctrlKey
+    }
+    if (!self.which && self.button !== undefined) {
+      self.which = self.button & 1 ? 1 : self.button & 2 ? 3 : self.button & 4 ? 2 : 0
+    }
+    /**
 			DOM_VK_SEMICOLON : 59 (;:)
 				- IE,WEBKIT: 186
 				- GECKO,OPERA : 59
@@ -129,55 +138,54 @@ _extend(KEvent, {
 			https://developer.mozilla.org/en/DOM/Event/UIEvent/KeyEvent
 			http://msdn.microsoft.com/en-us/library/ms536940(v=VS.85).aspx
 		*/
-		switch (self.which) {
-		case 186 :
-			self.which = 59;
-			break;
-		case 187 :
-		case 107 :
-		case 43 :
-			self.which = 61;
-			break;
-		case 189 :
-		case 45 :
-			self.which = 109;
-			break;
-		case 42 :
-			self.which = 106;
-			break;
-		case 47 :
-			self.which = 111;
-			break;
-		case 78 :
-			self.which = 110;
-			break;
-		}
-		if (self.which >= 96 && self.which <= 105) {
-			self.which -= 48;
-		}
-	},
-	preventDefault : function() {
-		var ev = this.event;
-		if (ev.preventDefault) {
-			ev.preventDefault();
-		} else {
-			ev.returnValue = false;
-		}
-	},
-	stopPropagation : function() {
-		var ev = this.event;
-		if (ev.stopPropagation) {
-			ev.stopPropagation();
-		} else {
-			ev.cancelBubble = true;
-		}
-	},
-	stop : function() {
-		this.preventDefault();
-		this.stopPropagation();
-	}
-});
-
+    switch (self.which) {
+      case 186:
+        self.which = 59
+        break
+      case 187:
+      case 107:
+      case 43:
+        self.which = 61
+        break
+      case 189:
+      case 45:
+        self.which = 109
+        break
+      case 42:
+        self.which = 106
+        break
+      case 47:
+        self.which = 111
+        break
+      case 78:
+        self.which = 110
+        break
+    }
+    if (self.which >= 96 && self.which <= 105) {
+      self.which -= 48
+    }
+  },
+  preventDefault: function () {
+    var ev = this.event
+    if (ev.preventDefault) {
+      ev.preventDefault()
+    } else {
+      ev.returnValue = false
+    }
+  },
+  stopPropagation: function () {
+    var ev = this.event
+    if (ev.stopPropagation) {
+      ev.stopPropagation()
+    } else {
+      ev.cancelBubble = true
+    }
+  },
+  stop: function () {
+    this.preventDefault()
+    this.stopPropagation()
+  }
+})
 
 /**
 	Note:
@@ -187,13 +195,13 @@ _extend(KEvent, {
 	http://msdn.microsoft.com/en-us/library/bb250448.aspx
 */
 if (window.attachEvent) {
-	window.attachEvent('onunload', function() {
-		_each(_eventData, function(key, events) {
-			if (events.el) {
-				_unbind(events.el);
-			}
-		});
-	});
+  window.attachEvent('onunload', function () {
+    _each(_eventData, function (key, events) {
+      if (events.el) {
+        _unbind(events.el)
+      }
+    })
+  })
 }
 
-export {_CHANGE_KEY_MAP}
+export { _CHANGE_KEY_MAP }
