@@ -481,7 +481,7 @@ SWFUpload.prototype.initSettings = function () {
 	this.customSettings = this.settings.custom_settings;
 
 	// Update the flash url if needed
-	if (!!this.settings.prevent_swf_caching) {
+	if (this.settings.prevent_swf_caching) {
 		this.settings.flash_url = this.settings.flash_url + (this.settings.flash_url.indexOf("?") < 0 ? "?" : "&") + "preventswfcaching=" + new Date().getTime();
 	}
 

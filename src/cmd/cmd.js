@@ -52,7 +52,6 @@ _extend(KCmd, {
   },
   select: function (hasDummy) {
     hasDummy = _undef(hasDummy, true)
-    debugger
     var self = this,
       sel = self.sel,
       range = self.range.cloneRange().shrink(),

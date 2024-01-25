@@ -1,22 +1,29 @@
 {
-	"name": "KindEditor",
-	"version": "4.1.12",
-	"filename": "kindeditor",
-	"repository": "kindsoft/kindeditor",
-	"scripts": {
-		"dev": "webpack-dev-server --config ./webpack.dev.config.js --env development"
-	},
-	"devDependencies": {
-		"copy-webpack-plugin": "^11.0.0",
-		"grunt": "~0.4.1",
-		"grunt-contrib-compress": "~0.5.3",
-		"grunt-contrib-concat": "~0.3.0",
-		"grunt-contrib-uglify": "~0.2.7",
-		"html-webpack-plugin": "^5.6.0",
-		"typescript": "^5.3.3",
-		"webpack": "^5.89.0",
-		"webpack-cli": "^5.1.4",
-		"webpack-dev-server": "^4.15.1"
-	},
-	"license": "LGPL-2.1"
+  "name": "KindEditor",
+  "version": "4.1.12",
+  "filename": "kindeditor",
+  "repository": "kindsoft/kindeditor",
+  "scripts": {
+    "dev": "webpack-dev-server --config ./webpack.dev.config.js --env development",
+    "lint": "eslint ./src --cache --fix --ext .js,.ts,.tsx",
+    "check-ud": "eslint ./src --cache --fix --ext .js,.ts,.tsx --no-eslintrc --rule \"no-undef:2\"",
+    "pretest": "npm run lint"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.23.3",
+    "@typescript-eslint/eslint-plugin": "^6.19.1",
+    "@typescript-eslint/parser": "^6.19.1",
+    "copy-webpack-plugin": "^11.0.0",
+    "eslint": "^8.56.0",
+    "grunt": "~0.4.1",
+    "grunt-contrib-compress": "~0.5.3",
+    "grunt-contrib-concat": "~0.3.0",
+    "grunt-contrib-uglify": "~0.2.7",
+    "html-webpack-plugin": "^5.6.0",
+    "typescript": "^5.3.3",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  },
+  "license": "LGPL-2.1"
 }
