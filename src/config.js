@@ -38,7 +38,7 @@ export var options = {
   cssPath: '', //String or Array
   cssData: '',
   minWidth: 650,
-  minHeight: 100,
+  minHeight: 600,
   minChangeSize: 50,
   zIndex: 811213,
   items: [

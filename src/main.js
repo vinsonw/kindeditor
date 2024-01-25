@@ -1,3 +1,4 @@
+import { _nativeCommand } from './cmd/helper'
 import {
   _addUnit,
   _removeUnit,

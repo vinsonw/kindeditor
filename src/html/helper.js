@@ -1,5 +1,17 @@
 import { _inArray, _toMap, _trim, _toHex, _each, _undef } from '../core'
-
+import {
+  _SINGLE_TAG_MAP,
+  _INLINE_TAG_MAP,
+  _PRE_TAG_MAP,
+  _BLOCK_TAG_MAP,
+  _AUTOCLOSE_TAG_MAP,
+  _CONTROL_TAG_MAP,
+  _FILL_ATTR_MAP,
+  _NOSPLIT_TAG_MAP,
+  _STYLE_TAG_MAP,
+  _WEBKIT,
+  _IE
+} from '../core'
 export {
   _getCssList,
   _getAttrList,

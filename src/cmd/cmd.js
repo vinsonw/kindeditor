@@ -1,5 +1,5 @@
 import { K } from '../K'
-import { _extend, _each, _trim, _IERANGE, _toHex } from '../core'
+import { _extend, _each, _trim, _IERANGE, _toHex, _WEBKIT, _IE } from '../core'
 import {
   _nativeCommand,
   _getSel,
@@ -52,6 +52,7 @@ _extend(KCmd, {
   },
   select: function (hasDummy) {
     hasDummy = _undef(hasDummy, true)
+    debugger
     var self = this,
       sel = self.sel,
       range = self.range.cloneRange().shrink(),

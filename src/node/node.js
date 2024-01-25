@@ -12,7 +12,8 @@ import {
   _trim,
   _toArray,
   _extend,
-  _STYLE_TAG_MAP
+  _STYLE_TAG_MAP,
+  _INLINE_TAG_MAP
 } from '../core'
 import { _bind } from '../event/helper'
 import { _getAttr } from '../selector/helper'
