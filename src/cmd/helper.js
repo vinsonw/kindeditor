@@ -1,4 +1,4 @@
-import { _IERANGE, _each, _PRE_TAG_MAP } from '../core'
+import { _toCamel, _IERANGE, _each, _PRE_TAG_MAP } from '../core'
 import { _getWin } from '../node/helper'
 
 // original execCommand
@@ -8,7 +8,7 @@ function _nativeCommand(doc, key, val) {
   } catch (e) {}
 }
 // original queryCommandValue
-function _nativeCommandValue(doc, key) {
+export function _nativeCommandValue(doc, key) {
   var val = ''
   try {
     val = doc.queryCommandValue(key)

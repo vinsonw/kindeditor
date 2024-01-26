@@ -17,8 +17,18 @@ import {
   _OPERA,
   _toMap,
   _trim,
-  _toArray
+  _toArray,
+  _V,
+  _IOS,
+  _TIME,
+  _INLINE_TAG_MAP,
+  _escape,
+  _unescape
 } from './core'
+import { _INPUT_KEY_MAP } from './event/event'
+import { _colorpicker } from './colorpicker'
+import { _dialog } from './dialog'
+import { _mediaImg } from './html/helper'
 import { _ctrl } from './event/helper'
 import { _drag } from './widget/helper'
 import { K } from './K'
@@ -27,6 +37,13 @@ import { _formatHtml, _formatUrl } from './html/helper'
 import { _docElement } from './node/helper'
 import { _toolbar } from './toolbar'
 import { _edit } from './edit/edit'
+import { _WEBKIT } from './core'
+import { _menu } from './menu'
+import { _getScrollPos } from './node/helper'
+import { _elementVal } from './edit/helper'
+import { _getAttrList, _getCssList, _mediaAttrs, _mediaEmbed } from './html/helper'
+import { _addClassToTag } from './html/helper'
+import { _clearMsWord } from './html/helper'
 
 var _plugins = {}
 
@@ -415,7 +432,8 @@ KEditor.prototype = {
 
       // JS加载完成，避免初始化多次
       if (!_pluginStatus[name]) {
-        _plugins[name].call(self, KindEditor)
+        // _plugins[name].call(self, KindEditor)
+        _plugins[name].call(self, K)
         _pluginStatus[name] = 'inited'
       }
 
@@ -1114,7 +1132,8 @@ export function _create(expr, options) {
   function create(editor) {
     _each(_plugins, function (name, fn) {
       if (_isFunction(fn)) {
-        fn.call(editor, KindEditor)
+        // fn.call(editor, KindEditor)
+        fn.call(editor, K)
         if (!editor._pluginStatus) {
           editor._pluginStatus = {}
         }

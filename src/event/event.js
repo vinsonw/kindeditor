@@ -1,5 +1,3 @@
-// @ts-check
-import { K } from '../K'
 import { _each, _toMap, _inArray, _extend, _TIME } from '../core'
 import {
   _bindEvent,
@@ -11,7 +9,8 @@ import {
   _unbind,
   _fire,
   _ctrl,
-  _ready
+  _ready,
+  _eventData
 } from './helper'
 
 /**
@@ -46,7 +45,9 @@ DOM_VK_CLOSE_BRACKET : 221 (]})
 DOM_VK_QUOTE : 222 ('")
 */
 // 输入文字的键值
-var _INPUT_KEY_MAP = _toMap('8,9,13,32,46,48..57,59,61,65..90,106,109..111,188,190..192,219..222')
+export var _INPUT_KEY_MAP = _toMap(
+  '8,9,13,32,46,48..57,59,61,65..90,106,109..111,188,190..192,219..222'
+)
 // 移动光标的键值
 var _CURSORMOVE_KEY_MAP = _toMap('33..40')
 // 输入文字或移动光标的键值

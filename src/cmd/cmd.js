@@ -1,5 +1,16 @@
 import { K } from '../K'
-import { _extend, _each, _trim, _IERANGE, _toHex, _WEBKIT, _IE } from '../core'
+import {
+  _extend,
+  _each,
+  _escape,
+  _inArray,
+  _trim,
+  _IERANGE,
+  _toHex,
+  _WEBKIT,
+  _IE,
+  _STYLE_TAG_MAP
+} from '../core'
 import {
   _nativeCommand,
   _getSel,
@@ -14,11 +25,14 @@ import {
   _wrapNode,
   _mergeAttrs,
   _inPreElement,
-  _getRng
+  _getRng,
+  _nativeCommandValue
 } from './helper'
 import { _getWin, _getDoc } from '../node/helper'
 import { _undef } from '../core/helper'
 import { _range } from '../range/range'
+import { _NOSPLIT_TAG_MAP } from '../core'
+import { _toRange } from '../range/helper'
 
 // create KCmd class
 export function KCmd(range) {

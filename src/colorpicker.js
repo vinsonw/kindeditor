@@ -1,5 +1,5 @@
 import { K } from './K'
-import { _extend } from './core'
+import { _extend, _each } from './core'
 import { KWidget } from './widget/widget'
 
 // create KColorPicker class

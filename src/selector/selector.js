@@ -1,4 +1,5 @@
 import { K } from '../K'
+import { _queryAll } from './helper'
 export { _queryAll } from './helper'
 
 export function _query(expr, root) {

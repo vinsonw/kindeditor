@@ -1,4 +1,4 @@
-import { _each, _json } from './core'
+import { _each, _json, _QUIRKS, _trim } from './core'
 import { K } from './K'
 import { _formatHtml, _formatUrl } from './html/helper'
 

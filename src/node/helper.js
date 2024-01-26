@@ -1,5 +1,5 @@
 import { K } from '../K'
-import { _isArray, _toCamel, _inString, _IE, _VALUE_TAG_MAP, _NEWIE, _OPERA } from '../core'
+import { _V, _isArray, _toCamel, _inString, _IE, _VALUE_TAG_MAP, _NEWIE, _OPERA } from '../core'
 import { _QUIRKS } from '../core'
 
 export {

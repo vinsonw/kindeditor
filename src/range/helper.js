@@ -1,5 +1,8 @@
 import { _IERANGE } from '../core'
 import { KRange } from './range'
+import { _START_TO_END, _START_TO_START, _END_TO_END, _END_TO_START } from './range'
+import { K } from '../K'
+import { _getDoc } from '../node/helper'
 
 function _updateCollapsed(range) {
   range.collapsed =

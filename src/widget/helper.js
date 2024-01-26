@@ -3,6 +3,7 @@ import { _formatUrl } from '../html/helper'
 import { _removeUnit } from '../core'
 import { _getDoc } from '../node/helper'
 import { _round } from '../core'
+import { _iframeDoc } from '../edit/helper'
 
 function _drag(options) {
   var moveEl = options.moveEl,

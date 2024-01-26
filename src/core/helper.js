@@ -1,4 +1,4 @@
-/**/ var undefined
+// /**/ var undefined
 
 if (!window.console) {
   window.console = {}

@@ -1,6 +1,8 @@
-import { _undef, _extend } from './core'
+import { _undef, _extend, _IE, _V, _each, _removeUnit } from './core'
 import { K } from './K'
 import { KWidget } from './widget/widget'
+import { _docElement } from './node/helper'
+import { _widget } from './widget/widget'
 
 function _createButton(arg) {
   arg = arg || {}

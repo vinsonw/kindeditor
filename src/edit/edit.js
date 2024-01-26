@@ -1,4 +1,4 @@
-import { _QUIRKS, _IE, _WEBKIT, _GECKO, _undef, _addUnit, _removeUnit, _extend } from '../core'
+import { _V, _QUIRKS, _IE, _WEBKIT, _GECKO, _undef, _addUnit, _removeUnit, _extend } from '../core'
 import { K } from '../K'
 import { KWidget } from '../widget/widget'
 import { _iframeDoc, _getInitHtml, _elementVal } from './helper'

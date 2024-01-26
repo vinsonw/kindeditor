@@ -1,3 +1,6 @@
+import { _getAttrList } from '../html/helper'
+import { _unescape, _each, _inArray } from '../core'
+import { _formatCss } from '../html/helper'
 export { _contains, _getAttr, _queryAll }
 
 var _getSetAttrDiv = document.createElement('div')
@@ -211,10 +214,9 @@ function _queryAll(expr, root) {
     i,
     j,
     k,
-    length,
     len,
     l
-  for (i = 0, lenth = parts.length; i < lenth; i++) {
+  for (i = 0, length = parts.length; i < length; i++) {
     part = parts[i]
     if (part === '>') {
       isChild = true

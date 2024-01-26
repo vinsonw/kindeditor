@@ -13,10 +13,14 @@ import {
   _toArray,
   _extend,
   _STYLE_TAG_MAP,
-  _INLINE_TAG_MAP
+  _INLINE_TAG_MAP,
+  _IE,
+  _CONTROL_TAG_MAP
 } from '../core'
 import { _bind } from '../event/helper'
 import { _getAttr } from '../selector/helper'
+import { _fire } from '../event/helper'
+import { _getAttrList } from '../html/helper'
 
 import {
   _get,

@@ -1,3 +1,4 @@
+import K from '../K'
 import { _TIME, _each, _inArray } from '../core'
 import { KEvent } from './event'
 
@@ -6,8 +7,8 @@ export { _bindEvent, _unbindEvent, _getId, _setId, _removeId, _bind, _unbind, _f
 var _useCapture = false
 
 var _eventExpendo = 'kindeditor_' + _TIME,
-  _eventId = 0,
-  _eventData = {}
+  _eventId = 0
+export var _eventData = {}
 // add native event
 function _bindEvent(el, type, fn) {
   if (el.addEventListener) {
@@ -167,14 +168,16 @@ var _readyFinished = false
 
 function _ready(fn) {
   if (_readyFinished) {
-    fn(KindEditor)
+    // fn(KindEditor)
+    fn(K)
     return
   }
   var loaded = false
   function readyFunc() {
     if (!loaded) {
       loaded = true
-      fn(KindEditor)
+      // fn(KindEditor)
+      fn(K)
       _readyFinished = true
     }
   }
