@@ -1,32 +1,25 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const CopyWebpackPlugin =  require('copy-webpack-plugin')
 /**
- * 
- * @param {*} env 
- * @returns {import('webpack').Configuration}
+ *
+ * @type {import('webpack').Configuration}
  */
-const devConfig = (env) => ({
+const devConfig = {
   mode: 'development',
   entry: path.resolve(__dirname, './src/dev.js'),
   devServer: {
-    static: path.resolve(__dirname)
+    // 注意: themes, langs, plugins 文件夹是运行时依赖，需要dev server能在根目录下访问到
+    static: path.resolve(__dirname),
+    open: true
   },
   output: {
-    path: path.resolve(__dirname, './dist'),
-    // publicPath: path.resolve(__dirname, './public')
+    path: path.resolve(__dirname, './dist')
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, './demo/index.html'),
-  }),
-  new CopyWebpackPlugin({
-    patterns: [
-      {from: path.resolve(__dirname, './themes'), to: path.resolve(__dirname, './dist/themes') },
-      {from: path.resolve(__dirname, './lang'), to: path.resolve(__dirname, './dist/lang') }
-    ]
-  })
-]
-})
-module.exports = (env) => {
-  return devConfig(env)
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, './public/index.html')
+    })
+  ]
 }
+
+module.exports = devConfig

@@ -1,16 +1,6 @@
 import { K } from '../K'
-import {
-  _IE,
-  _V,
-  _QUIRKS,
-  _docElement,
-  _each,
-  _addUnit,
-  _removeUnit,
-  _undef,
-  _round,
-  _extend
-} from '../core'
+import { _docElement } from '../node/helper'
+import { _IE, _V, _QUIRKS, _each, _addUnit, _removeUnit, _undef, _round, _extend } from '../core'
 import { _getWin } from '../node/helper'
 import { _drag } from './helper'
 import { _getScrollPos } from '../node/helper'
